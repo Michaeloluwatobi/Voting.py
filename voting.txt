@@ -1,0 +1,45 @@
+class Candidate:
+    def __init__(self, name):
+        self.name = name
+        self.votes = 0
+
+    def add_vote(self):
+        self.votes += 1
+
+class ElectronicVotingSystem:
+    def __init__(self, candidates):
+        self.candidates = candidates
+
+    def vote(self, candidate_name):
+        for candidate in self.candidates:
+            if candidate.name == candidate_name:
+                candidate.add_vote()
+                print(f"Voted for {candidate_name}.")
+                return
+        print("Candidate not found.")
+
+    def get_results(self):
+        print("Election Results:")
+        for candidate in self.candidates:
+            print(f"{candidate.name}: {candidate.votes} votes")
+
+# Example usage:
+candidates = [Candidate("Candidate 1"), Candidate("Candidate 2"), Candidate("Candidate 3")]
+voting_system = ElectronicVotingSystem(candidates)
+
+while True:
+    print("1. Vote")
+    print("2. Get Results")
+    print("3. Exit")
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        candidate_name = input("Enter the name of the candidate you want to vote for: ")
+        voting_system.vote(candidate_name)
+    elif choice == 2:
+        voting_system.get_results()
+    elif choice == 3:
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
